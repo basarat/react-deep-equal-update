@@ -1,4 +1,4 @@
-# `@updateWhenNotDeepEqual`
+# @updateWhenNotDeepEqual()
 
 [![Build Status](https://secure.travis-ci.org/remojansen/react-deep-equal-update.svg?branch=master)](https://travis-ci.org/remojansen/react-deep-equal-update)
 [![Coverage Status](https://coveralls.io/repos/github/remojansen/react-deep-equal-update/badge.svg?branch=master)](https://coveralls.io/github/remojansen/react-deep-equal-update?branch=master)
