@@ -2,7 +2,7 @@
 
 import * as deepEqual from "deep-equal";
 
-export default function updateWhenNotDeepEqual(subprop?: (string|subprop), substate?: (string|subprop)) {
+export default function updateWhenNotDeepEqual(subprop?: (string|subprop)) {
     return function(target: any) {
         target.prototype.shouldComponentUpdate = function (nextProps: Object) {
 
