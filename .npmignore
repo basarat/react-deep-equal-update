@@ -8,4 +8,6 @@ tsconfig.json
 typings.json
 .travis.yml
 .gitignore
+.npmignore
+tslint.json
 node_modules
