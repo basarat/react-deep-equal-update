@@ -14,7 +14,8 @@ var gulp        = require("gulp"),
     runSequence = require("run-sequence"),
     mocha       = require("gulp-mocha"),
     istanbul    = require("gulp-istanbul"),
-    coveralls   = require("gulp-coveralls");
+    coveralls   = require("gulp-coveralls"),
+    tsconfig    = require('./tsconfig.json');
     
 //******************************************************************************
 //* LINT
@@ -39,6 +40,9 @@ gulp.task("build-app", function() {
             "src/**/**.tsx"
         ])
         .pipe(tsc(tsProject))
+        .on('error', function (err) {
+            process.exit(1);
+        })
         .js.pipe(gulp.dest("src/"));
 });
 
@@ -50,11 +54,10 @@ gulp.task("build-test", function() {
             "test/**/*.tsx"
         ])
         .pipe(tsc(tsTestProject))
+        .on('error', function (err) {
+            process.exit(1);
+        })
         .js.pipe(gulp.dest("test/"));
-});
-
-gulp.task("build", function(cb) {
-    runSequence(["build-app", "build-test"], cb);
 });
 
 //******************************************************************************
@@ -109,5 +112,13 @@ gulp.task("bundle", function() {
 //* DEFAULT
 //******************************************************************************
 gulp.task("default", function (cb) {
-    runSequence("lint", "build", "istanbul:hook", "mocha", "cover", "bundle", cb);
+    runSequence(
+        "lint", 
+        "build-app", 
+        "build-test", 
+        "istanbul:hook", 
+        "mocha", 
+        "cover", 
+        "bundle",
+        cb);
 });
